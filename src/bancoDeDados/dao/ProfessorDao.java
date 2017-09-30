@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import com.mysql.jdbc.Statement;
 
+import trabalhojavanp1.objetos.Aluno;
 import trabalhojavanp1.objetos.Professor;
 
 public class ProfessorDao {
@@ -76,5 +77,28 @@ public class ProfessorDao {
 		query.close();
 
 		return listaProfessores;
+	}
+
+	public Professor buscaporId(Professor prof) throws SQLException {
+
+		PreparedStatement query = new ConnectionFactory().getConnection()
+				.prepareStatement("SELECT * FROM professores WHERE id = ?");
+
+		query.setInt(1, prof.getRegistro());
+
+		ResultSet resposta = query.executeQuery();
+
+		Professor p = new Professor();
+
+		while (resposta.next()) {
+
+			p.setRegistro(resposta.getInt(1));
+			p.setNome(resposta.getString(2));
+			p.setFormacao(resposta.getString(3));
+		}
+
+		query.close();
+
+		return p;
 	}
 }

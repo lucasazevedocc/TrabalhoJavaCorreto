@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import com.mysql.jdbc.Statement;
 
+import trabalhojavanp1.objetos.Aluno;
 import trabalhojavanp1.objetos.Curso;
 
 public class CursoDao {
@@ -18,18 +19,18 @@ public class CursoDao {
 
 		query.setInt(1, curso.getCodCurso());
 		query.setString(2, curso.getNomeDoCurso());
-		
+
 		query.executeUpdate();
 		ResultSet id = query.getGeneratedKeys();
-		
+
 		curso.setCodCurso(id.getInt(1));
 		System.out.println("curso inserido com sucesso");
-		
+
 		query.close();
 	}
 
 	public void deletarCurso(Curso curso) throws SQLException {
-		
+
 		new AlunoCursoDao().deletaCurso(curso);
 		new CursoDisciplinaProfessorDao().deletaCurso(curso);
 
@@ -60,8 +61,7 @@ public class CursoDao {
 
 		ArrayList<Curso> listaCursos = new ArrayList<Curso>();
 
-		PreparedStatement query = new ConnectionFactory().getConnection()
-				.prepareStatement("SELECT * FROM cursos");
+		PreparedStatement query = new ConnectionFactory().getConnection().prepareStatement("SELECT * FROM cursos");
 
 		ResultSet resposta = query.executeQuery();
 
@@ -75,5 +75,27 @@ public class CursoDao {
 		query.close();
 
 		return listaCursos;
+	}
+
+	public Curso buscaPorId(Curso curso) throws SQLException {
+
+		PreparedStatement query = new ConnectionFactory().getConnection()
+				.prepareStatement("SELECT * FROM cursos WHERE id = ?");
+
+		query.setInt(1, curso.getCodCurso());
+
+		ResultSet resposta = query.executeQuery();
+
+		Curso c = new Curso();
+
+		while (resposta.next()) {
+
+			c.setCodCurso(resposta.getInt(1));
+			c.setNomeDoCurso(resposta.getString(2));
+		}
+
+		query.close();
+
+		return c;
 	}
 }

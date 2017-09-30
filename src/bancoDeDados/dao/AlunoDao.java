@@ -82,5 +82,27 @@ public class AlunoDao {
 
 		return listaAlunos;
 	}
+	
+	public Aluno buscaPorId(Aluno aluno) throws SQLException {
+		
+		PreparedStatement query = new ConnectionFactory().getConnection().prepareStatement("SELECT * FROM alunos WHERE id = ?");
+		
+		query.setInt(1, aluno.getMatricula());
+
+		ResultSet resposta = query.executeQuery();
+		
+		Aluno a = new Aluno();
+
+		while (resposta.next()) {
+			
+			a.setMatricula(resposta.getInt(1));
+			a.setNome(resposta.getString(2));
+			a.setEndereco(resposta.getString(3));
+		}
+
+		query.close();
+
+		return a;
+	}
 
 }

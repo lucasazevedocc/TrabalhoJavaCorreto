@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import com.mysql.jdbc.Statement;
 
+import trabalhojavanp1.objetos.Aluno;
 import trabalhojavanp1.objetos.Disciplina;
 
 public class DisciplinaDao {
@@ -73,6 +74,28 @@ public class DisciplinaDao {
 		query.close();
 
 		return listaDisciplinas;
+	}
+
+	public Disciplina buscaPorId(Disciplina disc) throws SQLException {
+
+		PreparedStatement query = new ConnectionFactory().getConnection()
+				.prepareStatement("SELECT * FROM disciplinas WHERE id = ?");
+
+		query.setInt(1, disc.getCodDisciplina());
+
+		ResultSet resposta = query.executeQuery();
+
+		Disciplina d = new Disciplina();
+
+		while (resposta.next()) {
+
+			d.setCodDisciplina(resposta.getInt(1));
+			d.setNome(resposta.getString(2));
+		}
+
+		query.close();
+
+		return d;
 	}
 
 }

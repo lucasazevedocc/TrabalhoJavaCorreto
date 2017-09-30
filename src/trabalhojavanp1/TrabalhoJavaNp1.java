@@ -1,11 +1,11 @@
 
 package trabalhojavanp1;
 
-import java.awt.BorderLayout;
 import trabalhojavanp1.telas.PanelAdicionarAluno;
 import trabalhojavanp1.telas.PanelAdicionarCurso;
 import trabalhojavanp1.telas.PanelAdicionarDisciplina;
 import trabalhojavanp1.telas.PanelAdicionarProfessor;
+import trabalhojavanp1.telas.PanelHome;
 import trabalhojavanp1.telas.PanelLogin;
 import trabalhojavanp1.telas.PanelModificarAluno;
 import trabalhojavanp1.telas.PanelModificarCurso;
@@ -18,12 +18,11 @@ import trabalhojavanp1.telas.PanelMostrarDisciplinas;
 import trabalhojavanp1.telas.PanelMostrarDisciplinasDoProfessor;
 import trabalhojavanp1.telas.PanelMostrarProfessores;
 import trabalhojavanp1.telas.PanelMostrarProfessoresDoCurso;
+import trabalhojavanp1.telas.PanelPrincipal;
 import trabalhojavanp1.telas.PanelRemoverAluno;
 import trabalhojavanp1.telas.PanelRemoverCurso;
 import trabalhojavanp1.telas.PanelRemoverDisciplina;
 import trabalhojavanp1.telas.PanelRemoverProfessor;
-import trabalhojavanp1.telas.PanelHome;
-import trabalhojavanp1.telas.PanelPrincipal;
 import trabalhojavanp1.telas.TelaPrincipal;
 
 public class TrabalhoJavaNp1 {
